@@ -1,4 +1,82 @@
+@import "../login.scss";
+@import "../register.scss";
 // Global
 body {
-    color: $color-base-gray-70; 
+    color: $color-base-gray-70;
+}
+
+// text override
+.text-decoration-none {
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+    &.hover-none {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    padding: 10px;
+}
+
+@each $type in none,
+uppercase,
+lowercase,
+capitalize {
+    .text-transform-#{$type} {
+        text-transform: #{$type};
+    }
+}
+
+@for $size from 0 through 30 {
+    .fs-#{$size} {
+        font-size: #{$size}px;
+    }
+}
+
+@each $fw in 100,
+200,
+300,
+400,
+500,
+600,
+700,
+800,
+900 {
+    .fw-#{$fw} {
+        font-weight: #{$fw};
+    }
+}
+
+// override height input
+@for $height from 0 through 1000 {
+    .q-field--dense-#{$height} {
+        .q-field__control {
+            height: #{$height}px;
+        }
+    }
+}
+
+// override border radius
+@for $rounded from 0 through 1000 {
+    .rounded-borders-#{$rounded} {
+        border-radius: #{$rounded}px;
+    }
+    // input border radius
+    .q-field--outlined.outlined-rounded-#{$rounded} {
+        .q-field__control {
+            border-radius: #{$rounded}px;
+        }
+    }
+}
+
+// bg main
+.bg-fb {
+    background: $bg-fb !important;
 }
