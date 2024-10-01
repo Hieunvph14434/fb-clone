@@ -47,6 +47,17 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/verify-otp",
+    children: [
+      {
+        path: "",
+        name: "verify-otp",
+        meta: { titlePage: "Verify otp" },
+        component: () => import("pages/VerifyOtp.vue"),
+      },
+    ],
+  },
   // {
   //   path: "/404",
   //   children: [

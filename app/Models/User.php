@@ -44,4 +44,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // create relationship
+    public function otps()
+    {
+        return $this->hasOne(UserOtp::class);
+    }
 }

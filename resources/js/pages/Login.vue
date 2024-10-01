@@ -16,6 +16,9 @@
         />
         <button type="submit">Log In</button>
       </form>
+      <p v-if="message" :class="{'success': isSuccess, 'error': !isSuccess}">
+        {{ message }}
+      </p>
       <p>
         <router-link to="/register">Create New Account</router-link>
       </p>
@@ -23,17 +26,35 @@
   </template>
   
   <script>
+import { SendOtpService } from '../services/send-otp.service';
+
   export default {
     data() {
       return {
         email: '',
         password: '',
+        message: ''
       };
     },
     methods: {
-      handleLogin() {
+      async handleLogin() {
+        // const res = await SendOtpService.getUser(1);
+        // console.log(res);
+        try {
+          const response = await SendOtpService.login({
+            'email': this.email,
+            'password': this.password,
+          });
+          console.log(response);
+          this.message = response.data.message;
+        }catch(err) {
+          console.log(err);
+          
+          this.message = err.message
+        }
+        
         // Handle login logic here
-        console.log('Logging in with', this.email, this.password);
+        // console.log('Logging in with', this.email, this.password);
       },
     },
   };
